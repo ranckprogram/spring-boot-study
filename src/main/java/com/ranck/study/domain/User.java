@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 
 @Entity
@@ -15,6 +16,8 @@ public class User {
     @GeneratedValue
     private Integer id;
     private String name;
+
+    @Min(value = 18, message = "18岁以后才可以注册哦")
     private Integer age;
     private BigDecimal money;
 
