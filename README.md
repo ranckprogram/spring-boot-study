@@ -8,8 +8,9 @@
 - [X] 安装环境
 - [x] 写标准 restful 控制器，能打印参数看看
 - [x] 连接数据库，做单表简单的增删查改
-- [x] 项目目录结构分层，domain，repository, service(impl), controller,拦截器(aop) 
+- [x] 项目目录结构分层，domain，repository, service(impl), controller, aspect(aop) 
 - [ ] 数据库事务
+- [x] 封装统一返回的类
 - [ ] 表单检验
 - [ ] 生命周期Log
 - [ ] 多表查询，自定义查询语句；一对一，一对多，多对多

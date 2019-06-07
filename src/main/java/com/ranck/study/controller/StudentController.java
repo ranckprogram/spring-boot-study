@@ -1,7 +1,11 @@
 package com.ranck.study.controller;
 
+import com.ranck.study.domain.Result;
 import com.ranck.study.domain.User;
 import com.ranck.study.repository.UserRepository;
+import com.ranck.study.utils.ResultUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +16,8 @@ import java.util.Optional;
 
 @RestController
 public class StudentController {
+
+    private static Logger logger = LoggerFactory.getLogger(StudentController.class);
 
     @Autowired
     private UserRepository repository;
@@ -42,11 +48,11 @@ public class StudentController {
     // 这种也能使用query那个中方式接收
     // 采用对象接收才是王道
 
-    public User user(@Valid User user, BindingResult bindingResult) {
+    public Result<User> user(@Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return null;
+            return ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
         }
-        return repository.save(user);
+        return ResultUtil.success(repository.save(user));
     }
 
     @PutMapping("/student/{id}")

@@ -56,6 +56,7 @@ public class HttpAspect {
 
     @AfterReturning(returning = "object" ,pointcut = "all()")
     public void doAfter (Object object) {
+        System.out.println(object);
         logger.error(object.toString());
     }
 
