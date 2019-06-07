@@ -1,12 +1,14 @@
 package com.ranck.study.aspect;
 
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @Aspect
@@ -35,4 +37,27 @@ public class HttpAspect {
     public void afterTips() {
         System.out.println("在访问控制器之后的切面");
     }
+
+    @Pointcut("execution(public  * com.ranck.study.controller.StudentController.*(..))")
+    public void all() {
+
+    }
+
+    @Before("all()")
+    public void doBefore() {
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
+
+        logger.info("url={}", request.getRequestURL());
+        logger.info("method={}", request.getMethod());
+        logger.info("ip={}", request.getRemoteAddr());
+        logger.info("url={}", request.getRequestURL());
+    }
+
+    @AfterReturning(returning = "object" ,pointcut = "all()")
+    public void doAfter (Object object) {
+        logger.error(object.toString());
+    }
+
+
 }
