@@ -1,20 +1,30 @@
-package com.ranck.study;
+package com.ranck.study.domain;
 
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name="user")
-public class Student {
+public class User {
 
     @Id
     @GeneratedValue
     private Integer id;
     private String name;
     private Integer age;
+    private BigDecimal money;
+
+    public BigDecimal getMoney() {
+        return money;
+    }
+
+    public void setMoney(BigDecimal money) {
+        this.money = money;
+    }
 
     public Integer getId() {
         return id;

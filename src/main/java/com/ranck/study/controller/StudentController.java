@@ -1,7 +1,7 @@
 package com.ranck.study.controller;
 
-import com.ranck.study.Student;
-import com.ranck.study.repository.StudentRepository;
+import com.ranck.study.domain.User;
+import com.ranck.study.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,17 +12,17 @@ import java.util.Optional;
 public class StudentController {
 
     @Autowired
-    private StudentRepository repository;
+    private UserRepository repository;
 
     @GetMapping("/students")
-    public List<Student> student () {
+    public List<User> student () {
         return repository.findAll();
     }
 
     // path 的id应该必须传吧
     @GetMapping("/student/{id}")
-    public Student student (@PathVariable("id") Integer id){
-        return repository.findById(id).orElse(new Student());
+    public User student (@PathVariable("id") Integer id){
+        return repository.findById(id).orElse(new User());
     }
 
     @GetMapping("/student/query")
@@ -37,28 +37,26 @@ public class StudentController {
 //        return "student: " + student;
 //    }
 
-    public Student student(@RequestParam String name, @RequestParam Integer age){
+    public User student(@RequestParam String name, @RequestParam Integer age){
         // 这种也能使用query那个中方式接收
         System.out.println(name);
         System.out.println(age);
-        Student s = new Student();
+        User s = new User();
         s.setAge(age);
         s.setName(name);
         return repository.save(s);
     }
 
     @PutMapping("/student/{id}")
-    public Student student (@PathVariable("id") Integer id,
-                            @RequestBody String name
+    public User student (@PathVariable("id") Integer id,
+                         @RequestParam(value = "name",required = false) String name,
+                         @RequestParam(value = "age",required = false) Integer age
                             ){
-        Optional<Student> optional = repository.findById(id);
-        System.out.println(name);
+        Optional<User> optional = repository.findById(id);
         if (optional.isPresent()){
-            System.out.println(name);
-
-            Student s = optional.get();
+            User s = optional.get();
             s.setName(name);
-//            s.setAge(age);
+            s.setAge(age);
             return repository.save(s);
         }
         return null;
