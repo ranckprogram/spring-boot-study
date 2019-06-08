@@ -3,6 +3,7 @@ package com.ranck.study.controller;
 import com.ranck.study.domain.Result;
 import com.ranck.study.domain.User;
 import com.ranck.study.repository.UserRepository;
+import com.ranck.study.service.UserService;
 import com.ranck.study.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +21,10 @@ public class StudentController {
     private static Logger logger = LoggerFactory.getLogger(StudentController.class);
 
     @Autowired
-    private UserRepository repository;
+    private UserRepository repository;  // Controller层不应该直接掉 repository 层，。虽然没有错，但是结构上不完美
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/students")
     public List<User> student() {
@@ -68,5 +72,11 @@ public class StudentController {
             return repository.save(s);
         }
         return null;
+    }
+
+    @GetMapping(value = "/getUserAge/{id}")
+    public Result<User> getAge(@PathVariable Integer id) throws Exception {
+        userService.getAge(id);
+        return ResultUtil.success();
     }
 }
