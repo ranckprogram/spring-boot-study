@@ -21,3 +21,14 @@
 - JDBC
 - Spring JDBC Template
 
+### spring data 核心接口
+
+- Repository (仓库)
+- JpaRepository （ctrl+t出奇迹）
+
+
+重点：在继承Repository后的定义方法名很讲究
+
+
+
+没有包含方法申明的接口，标记接口
