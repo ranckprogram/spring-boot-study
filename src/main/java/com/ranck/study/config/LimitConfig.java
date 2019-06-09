@@ -1,4 +1,4 @@
-package com.ranck.study;
+package com.ranck.study.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -23,7 +23,7 @@ public class LimitConfig {
         return show;
     }
 
-    public void setShow(String show) {
+    public void  setShow(String show) {
         this.show = show;
     }
 }

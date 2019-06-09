@@ -1,6 +1,6 @@
 package com.ranck.study.controller;
 
-import com.ranck.study.LimitConfig;
+import com.ranck.study.config.LimitConfig;
 import com.ranck.study.aspect.HttpAspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

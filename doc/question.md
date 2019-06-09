@@ -6,7 +6,8 @@
 - [ ] 对象类型转化的前置条件？
 - [ ] 泛型T和模板？？
 - [ ] 枚举类和常量的区别
-
+- [ ] 怎么编写测试，测试只针对Service和Controller吗？
+- [ ] maven 可以分层分模块
 
 @Component 是将POJO对象实例化注入到spring容器中
 
@@ -17,5 +18,20 @@
 1.entity字段必须和数据库字段一样 
 2.model前端需要什么我们就给什么 
 3.domain很少用，代表一个对象模块 Result
+
+
+
+怎么学spring boot
+
+java规范、协议
+
+- servlet
+- jdbc
+- 数据校验  Bean validation
+- 缓存 java cathe api
+- websocket
+- java管理
+- 消息 JMS
+
 
 
