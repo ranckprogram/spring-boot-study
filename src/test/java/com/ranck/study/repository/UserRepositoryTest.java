@@ -40,6 +40,22 @@ public class UserRepositoryTest {
         List<User> users = userRepository.findUsersByNameStartingWith("琪");
         System.out.println(users.toString());
         Assert.assertNotNull(users);
-
     }
+
+    @Test
+    public void getUserForMaxId () {
+        User user = userRepository.getUserForMaxId();
+        System.out.println(user.toString());
+        Assert.assertNotNull(user);
+    }
+
+    @Test
+    public void testGetUserForNameLike () {
+        List<User> users = userRepository.getUserForNameLike("琪");
+        for (User user : users) {
+            System.out.println(user.toString());
+        }
+        Assert.assertNotNull(users);
+    }
+
 }
