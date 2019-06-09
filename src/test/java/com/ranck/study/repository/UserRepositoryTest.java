@@ -43,19 +43,25 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void getUserForMaxId () {
+    public void getUserForMaxId() {
         User user = userRepository.getUserForMaxId();
         System.out.println(user.toString());
         Assert.assertNotNull(user);
     }
 
     @Test
-    public void testGetUserForNameLike () {
+    public void testGetUserForNameLike() {
         List<User> users = userRepository.getUserForNameLike("琪");
         for (User user : users) {
             System.out.println(user.toString());
         }
         Assert.assertNotNull(users);
+    }
+
+    @Test
+    public void testGetCount() {
+        Integer count = userRepository.getCount();
+        System.out.println(count);
     }
 
 }

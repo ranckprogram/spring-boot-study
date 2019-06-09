@@ -16,8 +16,11 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     // User 类名，不是表名
     @Query("select o from User o where id = (select max(id) from User t1)")
-    User getUserForMaxId () ;
+    User getUserForMaxId();
 
     @Query("select o from User o where o.name like %:name%")
-    List<User> getUserForNameLike(@Param("name")String name);
+    List<User> getUserForNameLike(@Param("name") String name);
+
+    @Query(nativeQuery = true, value = "SELECT count(1) from user")
+    Integer getCount();
 }
