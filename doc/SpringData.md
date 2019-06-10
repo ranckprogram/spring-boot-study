@@ -25,7 +25,7 @@
 
 - Repository (仓库)
 - JpaRepository （ctrl+t出奇迹）
-
+- JpaSpecificationExecutor（复杂条件查询）
 
 重点：在继承Repository后的定义方法名很讲究
 
@@ -36,6 +36,14 @@
 ---
 - [x] 命名参数
 - [ ] 索引参数
+
+
+
+### 事务
+
+通常查询无所谓，如果涉及写入就要考虑事务，涉及事务放在service层
+
+在@Query注解中编写JPQL实现DELETE和UPDATE操作的时候必须加上@modifying注解，以通知Spring Data 这是一个DELETE或UPDATE操作。
 
 
 
